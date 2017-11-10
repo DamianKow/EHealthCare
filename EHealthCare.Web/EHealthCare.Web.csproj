@@ -191,12 +191,25 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201711102110091_AddAuthenticationAndPatients.cs" />
     <Compile Include="Migrations\201711102110091_AddAuthenticationAndPatients.Designer.cs">
       <DependentUpon>201711102110091_AddAuthenticationAndPatients.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711102128588_AddAccountIdToPatients.cs" />
+    <Compile Include="Migrations\201711102128588_AddAccountIdToPatients.Designer.cs">
+      <DependentUpon>201711102128588_AddAccountIdToPatients.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711102139255_RequiredAccountIdForPatient.cs" />
+    <Compile Include="Migrations\201711102139255_RequiredAccountIdForPatient.Designer.cs">
+      <DependentUpon>201711102139255_RequiredAccountIdForPatient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711102202451_AnotherChangeForPatient.cs" />
+    <Compile Include="Migrations\201711102202451_AnotherChangeForPatient.Designer.cs">
+      <DependentUpon>201711102202451_AnotherChangeForPatient.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -261,6 +274,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Patient\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -293,6 +307,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201711102110091_AddAuthenticationAndPatients.resx">
       <DependentUpon>201711102110091_AddAuthenticationAndPatients.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711102128588_AddAccountIdToPatients.resx">
+      <DependentUpon>201711102128588_AddAccountIdToPatients.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711102139255_RequiredAccountIdForPatient.resx">
+      <DependentUpon>201711102139255_RequiredAccountIdForPatient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711102202451_AnotherChangeForPatient.resx">
+      <DependentUpon>201711102202451_AnotherChangeForPatient.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

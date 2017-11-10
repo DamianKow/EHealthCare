@@ -7,6 +7,9 @@ namespace EHealthCare.Model
     {
         [Key]
         public int PatientId { get; set; }
+        public ApplicationUser Account { get; set; }
+        [Required]
+        public string AccountId { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public int Pesel { get; set; }
