@@ -3,10 +3,28 @@ namespace EHealthCare.Web.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class AddPatientsTable : DbMigration
+    public partial class AddAuthenticationAndPatients : DbMigration
     {
         public override void Up()
         {
+            CreateTable(
+                "dbo.Patients",
+                c => new
+                    {
+                        PatientId = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
+                        Surname = c.String(),
+                        Pesel = c.Int(nullable: false),
+                        Age = c.Int(nullable: false),
+                        Phone = c.Int(nullable: false),
+                        City = c.String(),
+                        Street = c.String(),
+                        PostCode = c.String(),
+                        Sex = c.String(),
+                        CreationTime = c.DateTime(nullable: false),
+                    })
+                .PrimaryKey(t => t.PatientId);
+            
             CreateTable(
                 "dbo.AspNetRoles",
                 c => new
@@ -94,6 +112,7 @@ namespace EHealthCare.Web.Migrations
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
+            DropTable("dbo.Patients");
         }
     }
 }

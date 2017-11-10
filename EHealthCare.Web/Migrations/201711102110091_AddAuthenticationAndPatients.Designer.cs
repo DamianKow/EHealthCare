@@ -7,13 +7,13 @@ namespace EHealthCare.Web.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class AddPatientsTable : IMigrationMetadata
+    public sealed partial class AddAuthenticationAndPatients : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddPatientsTable));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddAuthenticationAndPatients));
         
         string IMigrationMetadata.Id
         {
-            get { return "201711102048111_AddPatientsTable"; }
+            get { return "201711102110091_AddAuthenticationAndPatients"; }
         }
         
         string IMigrationMetadata.Source

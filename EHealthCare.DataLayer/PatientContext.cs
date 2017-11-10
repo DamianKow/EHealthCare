@@ -3,14 +3,8 @@ using System.Data.Entity;
 
 namespace EHealthCare.DataLayer
 {
-    public class PatientContext : DbContext
+    public class PatientContext : ApplicationDbContext
     {
-
-        public PatientContext() : base("DefaultConnection")
-        {
-            
-        }
-
         public DbSet<Patient> Patients { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

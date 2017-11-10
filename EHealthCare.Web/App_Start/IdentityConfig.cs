@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using EHealthCare.Web.Models;
+using EHealthCare.DataLayer;
 
 namespace EHealthCare.Web
 {
