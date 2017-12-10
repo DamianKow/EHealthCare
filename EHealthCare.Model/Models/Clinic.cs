@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace EHealthCare.Model.Models
@@ -9,7 +8,7 @@ namespace EHealthCare.Model.Models
 
         [Key]
         public int Id { get; set; }
-        public string name { get; set; }
+        public string Name { get; set; }
         public string City { get; set; }
         public string Street { get; set; }
         public string PostCode { get; set; }
