@@ -20,7 +20,8 @@ namespace EHealthCare.Web.Controllers
             _context = new ApplicationDbContext();
         }
 
-        [Authorize]
+       // [Authorize]
+        [HttpPost]
         public ActionResult Create()
         {
             string accountId = User.Identity.GetUserId();
@@ -54,7 +55,7 @@ namespace EHealthCare.Web.Controllers
                 Surname = viewModel.Surname,
                 Pesel = viewModel.Pesel,
                 Sex = viewModel.Sex,
-                CreationTime = DateTime.Now,
+               // CreationTime = DateTime.Now,
                 Street = viewModel.Street,
                 City = viewModel.City,
                 PostCode = viewModel.PostCode,
@@ -71,5 +72,12 @@ namespace EHealthCare.Web.Controllers
             return RedirectToAction("Index", "Home");
 
         }
+
+
+        public ActionResult CreateVisit()
+        {
+            return View();
+        }
+
     }
 }

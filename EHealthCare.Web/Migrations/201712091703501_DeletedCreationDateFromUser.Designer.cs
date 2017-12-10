@@ -7,13 +7,13 @@ namespace EHealthCare.Web.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class RequiredAccountIdForPatient : IMigrationMetadata
+    public sealed partial class DeletedCreationDateFromUser : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(RequiredAccountIdForPatient));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(DeletedCreationDateFromUser));
         
         string IMigrationMetadata.Id
         {
-            get { return "201711102139255_RequiredAccountIdForPatient"; }
+            get { return "201712091703501_DeletedCreationDateFromUser"; }
         }
         
         string IMigrationMetadata.Source

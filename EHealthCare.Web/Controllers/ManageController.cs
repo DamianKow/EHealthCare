@@ -7,6 +7,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using EHealthCare.Web.Models;
+using EHealthCare.Model.Models;
+using EHealthCare.DataLayer;
 
 namespace EHealthCare.Web.Controllers
 {
@@ -64,15 +66,28 @@ namespace EHealthCare.Web.Controllers
                 : "";
 
             var userId = User.Identity.GetUserId();
-            var model = new IndexViewModel
-            {
-                HasPassword = HasPassword(),
-                PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
-                TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
-                Logins = await UserManager.GetLoginsAsync(userId),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
-            };
-            return View(model);
+            //var model = new IndexViewModel
+            //{
+            //    HasPassword = HasPassword(),
+            //    PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
+            //    TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
+            //    Logins = await UserManager.GetLoginsAsync(userId),
+            //    BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
+
+            //};
+            ApplicationDbContext db = new ApplicationDbContext();
+            var doctor = from d in db.Doctors
+                         where d.AccountId == userId
+                         select d;
+            var dList = doctor.ToList();
+
+            //var model = new Doctor
+            //{
+            //    Name = dList[0].Name;
+                
+            //}
+
+            return View(dList[0]);
         }
 
         //

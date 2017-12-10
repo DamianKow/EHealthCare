@@ -46,10 +46,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
@@ -189,10 +191,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\Home2Controller.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
+    <Compile Include="Controllers\VisitController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -204,13 +208,21 @@
     <Compile Include="Migrations\201711102128588_AddAccountIdToPatients.Designer.cs">
       <DependentUpon>201711102128588_AddAccountIdToPatients.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201711102139255_RequiredAccountIdForPatient.cs" />
-    <Compile Include="Migrations\201711102139255_RequiredAccountIdForPatient.Designer.cs">
-      <DependentUpon>201711102139255_RequiredAccountIdForPatient.cs</DependentUpon>
+    <Compile Include="Migrations\201712091703501_DeletedCreationDateFromUser.cs" />
+    <Compile Include="Migrations\201712091703501_DeletedCreationDateFromUser.Designer.cs">
+      <DependentUpon>201712091703501_DeletedCreationDateFromUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201711102202451_AnotherChangeForPatient.cs" />
-    <Compile Include="Migrations\201711102202451_AnotherChangeForPatient.Designer.cs">
-      <DependentUpon>201711102202451_AnotherChangeForPatient.cs</DependentUpon>
+    <Compile Include="Migrations\201712091733258_AddDoctorAndClinicModels.cs" />
+    <Compile Include="Migrations\201712091733258_AddDoctorAndClinicModels.Designer.cs">
+      <DependentUpon>201712091733258_AddDoctorAndClinicModels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712091801130_AddAccountIdInDoctorModel.cs" />
+    <Compile Include="Migrations\201712091801130_AddAccountIdInDoctorModel.Designer.cs">
+      <DependentUpon>201712091801130_AddAccountIdInDoctorModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712101156152_AddVisitModel.cs" />
+    <Compile Include="Migrations\201712101156152_AddVisitModel.Designer.cs">
+      <DependentUpon>201712101156152_AddVisitModel.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -252,8 +264,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
@@ -278,6 +288,10 @@
     <Content Include="Views\Patient\Create.cshtml" />
     <Content Include="Views\Shared\_mainView.cshtml" />
     <Content Include="Views\Home2\Index.cshtml" />
+    <Content Include="Views\Home\Dashboard.cshtml" />
+    <Content Include="Views\Doctor\DataManage.cshtml" />
+    <Content Include="Views\Visit\Index.cshtml" />
+    <Content Include="Views\Doctor\MyVisit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -318,11 +332,17 @@
     <EmbeddedResource Include="Migrations\201711102128588_AddAccountIdToPatients.resx">
       <DependentUpon>201711102128588_AddAccountIdToPatients.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711102139255_RequiredAccountIdForPatient.resx">
-      <DependentUpon>201711102139255_RequiredAccountIdForPatient.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201712091703501_DeletedCreationDateFromUser.resx">
+      <DependentUpon>201712091703501_DeletedCreationDateFromUser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711102202451_AnotherChangeForPatient.resx">
-      <DependentUpon>201711102202451_AnotherChangeForPatient.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201712091733258_AddDoctorAndClinicModels.resx">
+      <DependentUpon>201712091733258_AddDoctorAndClinicModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712091801130_AddAccountIdInDoctorModel.resx">
+      <DependentUpon>201712091801130_AddAccountIdInDoctorModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712101156152_AddVisitModel.resx">
+      <DependentUpon>201712101156152_AddVisitModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

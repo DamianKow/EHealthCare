@@ -19,7 +19,6 @@ namespace EHealthCare.Model
         public string Street { get; set; }
         public string PostCode { get; set; }
         public string Sex { get; set; }
-        public DateTime CreationTime { get; set; }
 
     }
 }

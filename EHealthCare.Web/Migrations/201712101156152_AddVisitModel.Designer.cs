@@ -6,14 +6,14 @@ namespace EHealthCare.Web.Migrations
     using System.Data.Entity.Migrations.Infrastructure;
     using System.Resources;
     
-    [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class AnotherChangeForPatient : IMigrationMetadata
+    [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
+    public sealed partial class AddVisitModel : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AnotherChangeForPatient));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddVisitModel));
         
         string IMigrationMetadata.Id
         {
-            get { return "201711102202451_AnotherChangeForPatient"; }
+            get { return "201712101156152_AddVisitModel"; }
         }
         
         string IMigrationMetadata.Source
