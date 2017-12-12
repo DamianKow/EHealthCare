@@ -63,6 +63,7 @@
     <Compile Include="Models\Prescription.cs" />
     <Compile Include="Models\Term.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\DoctorViewModel.cs" />
     <Compile Include="ViewModels\PatientViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

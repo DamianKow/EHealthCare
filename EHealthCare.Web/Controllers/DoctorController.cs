@@ -1,14 +1,25 @@
 ﻿using EHealthCare.DataLayer;
 using EHealthCare.Model.Models;
+using EHealthCare.Model.ViewModels;
 using Microsoft.AspNet.Identity;
 using System.Data.Entity.Migrations;
 using System.Diagnostics;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace EHealthCare.Web.Controllers
 {
     public class DoctorController : Controller
     {
+
+        private readonly ApplicationDbContext _context;
+
+
+        public DoctorController()
+        {
+            _context = new ApplicationDbContext();
+        }
+
         // GET: Doctor
         public ActionResult Index()
         {
@@ -24,7 +35,7 @@ namespace EHealthCare.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult ActualizeData(Doctor model)
         {
-
+            // TODO: Use new convention for dbcontext to avoid reusing a lot of code.
             ApplicationDbContext db = new ApplicationDbContext();
 
             Debug.Print(model.ToString());
@@ -38,18 +49,6 @@ namespace EHealthCare.Web.Controllers
                 model);
             db.SaveChanges();
 
-
-            //db.Doctors.AddOrUpdate(model);
-            //db.SaveChanges();
-
-            //var userId = User.Identity.GetUserId();
-            //model.AccountId = userId;
-            //if (ModelState.IsValid)
-            //{
-
-            //    db.SaveChanges();
-            //    return RedirectToAction("Dashboard", "Home");
-            //}
             return RedirectToAction("Dashboard", "Home");
            // return RedirectToAction("Index", "Manage");    
         }
@@ -74,20 +73,41 @@ namespace EHealthCare.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddTerm(Term term)
+        public ActionResult AddTerm(AddTermViewModel viewModel)
         {
-            using (var db = new ApplicationDbContext())
+            var userId = User.Identity.GetUserId();
+            var currentDoctor = _context.Doctors
+                .Where(x => x.AccountId == userId)
+                .FirstOrDefault();
+
+            var term = new Term
             {
-                db.Terms.Add(term);
-                db.SaveChanges();
-            }
+                Day = viewModel.Day,
+                Hour = viewModel.Hour,
+                Doctor = currentDoctor
+            };
+
+            _context.Terms.Add(term);
+            _context.SaveChanges();
 
             return RedirectToAction("ShowTerm", "Doctor");
         }
 
+        [HttpGet]
         public ActionResult ShowTerm()
         {
-            return View();
+
+            var userId = User.Identity.GetUserId();
+
+            var terms = _context.Terms
+                .Where(x => x.Doctor.AccountId == userId);
+
+            var viewModel = new ShowTermsViewModel
+            {
+                Terms = terms
+            };
+
+            return View(viewModel);
         }
     }
 }

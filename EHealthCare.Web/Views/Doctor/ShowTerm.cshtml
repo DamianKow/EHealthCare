@@ -1,22 +1,48 @@
-﻿@model IEnumerable<EHealthCare.Model.Models.Term>
+﻿@model EHealthCare.Model.ViewModels.ShowTermsViewModel
 
 @{
     ViewBag.Title = "ShowTerm";
     Layout = "~/Views/Shared/_mainView.cshtml";
 }
 
-<h2>ShowTerm</h2>
+<h2>My terms</h2>
 
-<p>
+@using (Html.BeginForm("ShowTerm", "Doctor"))
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Day</th>
+            <th>Hour</th>
+        </tr>
+        </thead>
+        
+        <tbody>
+        
+            @foreach (var term in Model.Terms)
+            {
+                <tr>
+                    <td>@term.TermId</td>
+                    <td>@term.Day</td>
+                    <td>@term.Hour</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
+
+@*<p>
     @Html.ActionLink("Create New", "AddTerm")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Day)
+            @Html.DisplayNameFor(m => m.Day)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Hour)
+            @Html.DisplayNameFor(m => m.Hour)
         </th>
         <th></th>
     </tr>
@@ -39,4 +65,4 @@
 }
     
 
-</table>
+</table>*@
