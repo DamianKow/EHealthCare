@@ -1,5 +1,6 @@
 ﻿using Microsoft.Owin;
 using Owin;
+using System.Web.Http;
 
 [assembly: OwinStartupAttribute(typeof(EHealthCare.Web.Startup))]
 namespace EHealthCare.Web
@@ -10,5 +11,7 @@ namespace EHealthCare.Web
         {
             ConfigureAuth(app);
         }
+
+       
     }
 }

@@ -14,7 +14,9 @@ namespace EHealthCare.Model.Models
 
         public virtual Doctor Doctor { get; set; }
         public DateTime Date { get; set; }
-        public bool IsTookPlace { get; set; }
+        public bool? IsTookPlace { get; set; }
+        public virtual Prescription Prescription { get; set; }
+        public string MedicalExamination { get; set; }
 
         public string Name { get; set; }
         public string Surname { get; set; }

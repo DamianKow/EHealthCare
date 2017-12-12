@@ -33,9 +33,8 @@ namespace EHealthCare.Web.Controllers
 
             model.AccountId = userId;
 
-
             db.Doctors.AddOrUpdate(
-                d => d.Pesel,
+                d => d.AccountId,
                 model);
             db.SaveChanges();
 
@@ -66,6 +65,29 @@ namespace EHealthCare.Web.Controllers
             {
                 return RedirectToAction("Dashboard", "Home");
             }
+        }
+
+        [HttpGet]
+        public ActionResult AddTerm()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddTerm(Term term)
+        {
+            using (var db = new ApplicationDbContext())
+            {
+                db.Terms.Add(term);
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("ShowTerm", "Doctor");
+        }
+
+        public ActionResult ShowTerm()
+        {
+            return View();
         }
     }
 }

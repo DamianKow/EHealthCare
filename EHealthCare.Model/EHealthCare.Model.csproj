@@ -56,8 +56,12 @@
     <Compile Include="ApplicationUser.cs" />
     <Compile Include="Models\Clinic.cs" />
     <Compile Include="Models\Doctor.cs" />
+    <Compile Include="Models\Medicines.cs" />
     <Compile Include="Models\Patient.cs" />
     <Compile Include="Models\PatientVisit.cs" />
+    <Compile Include="Models\PrecriptionMedicine.cs" />
+    <Compile Include="Models\Prescription.cs" />
+    <Compile Include="Models\Term.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\PatientViewModel.cs" />
   </ItemGroup>

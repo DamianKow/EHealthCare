@@ -13,6 +13,10 @@ namespace EHealthCare.DataLayer
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Clinic> Clinics { get; set; }
+        public DbSet<Term> Terms { get; set; }
+        public DbSet<Prescription> Prescriptions { get; set; }
+        public DbSet<Medicines> Medicines { get; set; }
+        public DbSet<PrecriptionMedicine> PrecriptionMedicine { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
@@ -23,5 +27,7 @@ namespace EHealthCare.DataLayer
         {
             return new ApplicationDbContext();
         }
+
+       // public System.Data.Entity.DbSet<EHealthCare.Model.Models.Term> Terms { get; set; }
     }
 }
