@@ -9,5 +9,6 @@ namespace EHealthCare.Model.Models
         public int Day { get; set; }
         public int Hour { get; set; }
         public virtual Doctor Doctor { get; set; }
+        public bool IsTaken { get; set; }
     }
 }

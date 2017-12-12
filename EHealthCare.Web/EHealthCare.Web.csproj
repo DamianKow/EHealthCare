@@ -250,6 +250,10 @@
     <Compile Include="Migrations\201712121900423_UpdateForTermToMatchConvention.Designer.cs">
       <DependentUpon>201712121900423_UpdateForTermToMatchConvention.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712121951417_AddIsUsableFieldForTerms.cs" />
+    <Compile Include="Migrations\201712121951417_AddIsUsableFieldForTerms.Designer.cs">
+      <DependentUpon>201712121951417_AddIsUsableFieldForTerms.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -381,6 +385,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712121900423_UpdateForTermToMatchConvention.resx">
       <DependentUpon>201712121900423_UpdateForTermToMatchConvention.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712121951417_AddIsUsableFieldForTerms.resx">
+      <DependentUpon>201712121951417_AddIsUsableFieldForTerms.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

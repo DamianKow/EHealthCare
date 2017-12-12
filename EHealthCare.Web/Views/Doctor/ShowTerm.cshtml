@@ -7,6 +7,7 @@
 
 <h2>My terms</h2>
 
+@Html.ActionLink(" [Click to add new term]", "AddTerm", "Doctor")
 @using (Html.BeginForm("ShowTerm", "Doctor"))
 {
     <table class="table">
@@ -15,6 +16,7 @@
             <th>Id</th>
             <th>Day</th>
             <th>Hour</th>
+            <th>Is taken?</th>
         </tr>
         </thead>
         
@@ -26,6 +28,14 @@
                     <td>@term.TermId</td>
                     <td>@term.Day</td>
                     <td>@term.Hour</td>
+                    @if (@term.IsTaken == true)
+                    {
+                        <td>True</td>
+                    }
+                    else
+                    {
+                        <td>False</td>
+                    }
                 </tr>
             }
         </tbody>
