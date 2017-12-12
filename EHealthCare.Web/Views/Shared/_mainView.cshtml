@@ -60,7 +60,53 @@
                
                 <!-- /.search form -->
                 <!-- sidebar menu: : style can be found in sidebar.less -->
+
+                
+                 
+
                 <ul class="sidebar-menu" data-widget="tree">
+                    
+                    
+                    @if (Request.IsAuthenticated && User.IsInRole("Patient"))
+                    {
+                        <li class="treeview">
+                            <a href="/Doctor/ShowTerm">
+                                <i class="fa fa-dashboard"></i> <span>Sample field for doctor 1</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="treeview">
+                            <a href="/Doctor/ShowTerm">
+                                <i class="fa fa-dashboard"></i> <span>Sample field for doctor 2</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                        </li>
+                    }
+                    @if (Request.IsAuthenticated && User.IsInRole("Doctor"))
+                    {
+                        <li class="treeview">
+                            <a href="/Doctor/ShowTerm">
+                                <i class="fa fa-dashboard"></i> <span>Sample field for patient 1</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="treeview">
+                            <a href="/Doctor/ShowTerm">
+                                <i class="fa fa-dashboard"></i> <span>Sample field for patient 2</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                        </li>
+                    }
+
+
                     <li class="header">MAIN NAVIGATION</li>
                     <li class="treeview">
                         <a href="/Home/Dashboard">
@@ -74,7 +120,7 @@
                             <li><a href="../../index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
                         </ul>*@
                     </li>
-                    
+
                     <li class="treeview">
                         <a href="/Doctor/MyVisit">
                             <i class="fa fa-dashboard"></i> <span>Przyszłe wizyty</span>
@@ -96,8 +142,8 @@
                             </span>
                         </a>
                     </li>
-                   
-                  
+
+
                 </ul>
             </section>
             <!-- /.sidebar -->

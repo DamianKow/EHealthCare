@@ -1,4 +1,6 @@
-﻿namespace EHealthCare.Model.ViewModels
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace EHealthCare.Model.ViewModels
 {
     public class PatientViewModel
     {
@@ -9,6 +11,7 @@
         public int Phone { get; set; }
         public string Street { get; set; }
         public string City { get; set; }
+        [Display(Name = "Post code")]
         public string PostCode { get; set; }
         public string Sex { get; set; }
 

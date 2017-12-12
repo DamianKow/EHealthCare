@@ -3,7 +3,6 @@ using EHealthCare.Model;
 using EHealthCare.Model.ViewModels;
 using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
-using System;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web.Mvc;
@@ -20,12 +19,17 @@ namespace EHealthCare.Web.Controllers
             _context = new ApplicationDbContext();
         }
 
-       // [Authorize]
-        [HttpPost]
+        [Authorize]
+        [HttpGet]
         public ActionResult Create()
         {
             string accountId = User.Identity.GetUserId();
             var patient = (from c in _context.Patients where c.AccountId == accountId select c).FirstOrDefault();
+
+            if (patient == null)
+            {
+                return View();
+            }
 
             var viewModel = new PatientViewModel
             {
@@ -35,7 +39,7 @@ namespace EHealthCare.Web.Controllers
                 Sex = patient.Sex.IsNullOrWhiteSpace() ? "Man/Woman?" : patient.Sex,
                 Street = patient.Street.IsNullOrWhiteSpace() ? "Enter your Street" : patient.Street,
                 City = patient.City.IsNullOrWhiteSpace() ? "enter your City" : patient.City,
-                PostCode = patient.PostCode.IsNullOrWhiteSpace() ? "Enter your Postcode" : patient.PostCode,
+                PostCode = patient.PostCode.IsNullOrWhiteSpace() ? "Enter your Post code" : patient.PostCode,
                 Phone = patient.Phone,
                 Age = patient.Age
             };
