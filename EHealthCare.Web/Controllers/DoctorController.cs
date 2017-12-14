@@ -222,6 +222,8 @@ namespace EHealthCare.Web.Controllers
             return View(viewModel);
         }
 
+        [HttpGet]
+        [Authorize(Roles = "Doctor")]
         public ActionResult ShowVisits()
         {
             var userId = User.Identity.GetUserId();
@@ -240,7 +242,7 @@ namespace EHealthCare.Web.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Doctor")]
-        public ActionResult CompleteVisit(string submitButton)
+        public ActionResult ShowVisits(string submitButton) // completes a visit
         {
             if (ModelState.IsValid)
             {

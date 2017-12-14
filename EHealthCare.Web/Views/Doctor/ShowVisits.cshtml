@@ -6,7 +6,7 @@
 
 <h2>My visits</h2>
 
-@using (Html.BeginForm("ShowVisits", "Patient"))
+@using (Html.BeginForm("ShowVisits", "Doctor"))
 {
 
     if (TempData["Success"] != null)
@@ -38,7 +38,7 @@
                     <td>@visit.IsTookPlace</td>
                     @if (@visit.IsTookPlace != true)
                     {
-                        using (Html.BeginForm("CompleteVisit", "Doctor"))
+                        using (Html.BeginForm("ShowVisits", "Doctor"))
                         {
                             <td><button type="submit" class="btn btn-primary" name="submitButton" value="@visit.Id">Visit took place</button></td>
                         }
