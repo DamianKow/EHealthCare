@@ -12,6 +12,7 @@
         <thead>
         <tr>
             <th>Doctor</th>
+            <th>Doctor's specialization</th>
             <th>Date</th>
             <th></th>
         </tr>
@@ -23,12 +24,9 @@
         {
             <tr>
                 <td>@term.Doctor.Name @term.Doctor.Surname</td>
+                <td>@term.Doctor.Specialization</td>
                 <td>@term.DateTimeOfTerm</td>
-                @using (Html.BeginForm("CreateVisit", "Patient"))
-                {
-                   <td><button type="submit" class="btn btn-primary" name="submitButton" value="@term.TermId">Book</button></td>
-                }
-                
+                <td><button type="submit" class="btn btn-primary" name="submitButton" value="@term.TermId">Book a visit</button></td>
             </tr>
         }
         </tbody>

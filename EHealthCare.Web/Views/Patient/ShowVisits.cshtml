@@ -32,9 +32,9 @@
         {
             <tr>
                 <td>@visit.Date</td>
-                <td>@visit.Doctor.Name</td>
+                <td>@visit.Doctor.Name @visit.Doctor.Surname</td>
                 <td>@visit.MedicalExamination</td>
-                <td>@visit.IsTookPlace</td>
+                <td>@visit.IsTookPlace.ToString()</td>
             </tr>
         }
         </tbody>

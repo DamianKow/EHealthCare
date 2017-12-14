@@ -1,0 +1,41 @@
+﻿@model EHealthCare.Model.ViewModels.ManagePrescriptionsViewModel
+@{
+    ViewBag.Title = "ShowPrescriptions";
+    Layout = "~/Views/Shared/_mainView.cshtml";
+}
+
+<h2>Prescriptions details</h2>
+
+@Html.ActionLink("Add medicines to prescriptions", "ManagePrescriptions", "Doctor");
+@using (Html.BeginForm("ShowPrescriptions", "Doctor"))
+{
+    <h2></h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Prescription Id</th>
+                <th>Patient's name</th>
+                <th>Expiration date</th>
+                <th>Medicine</th>
+                <th>Active substance</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            @foreach (var record in Model.PrecriptionMedicines)
+            {
+                <tr>
+                    <td>@record.Prescription.Id</td>
+                    <td>@record.Prescription.Patient.Name @record.Prescription.Patient.Surname</td>
+                    <td>@record.Prescription.ExpirationDate</td>
+                    <td>@record.Medicines.Name</td>
+                    <td>@record.Medicines.ActiveSubstance</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
+

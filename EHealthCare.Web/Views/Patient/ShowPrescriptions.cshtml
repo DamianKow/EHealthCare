@@ -10,12 +10,12 @@
 {
     <table class="table">
         <thead>
-            <tr>
-                <th>Expiration Date</th>
-                <th>Medicine</th>
-                <th>Active substance</th>
-                <th>Who prescribed?</th>
-            </tr>
+        <tr>
+            <th>Prescription #ID</th>
+            <th>Expiration Date</th>
+            <th>Medicine</th>
+            <th>Active substance</th>
+        </tr>
         </thead>
 
         <tbody>
@@ -23,10 +23,10 @@
             @foreach (var medicine in Model.PrecriptionMedicines)
             {
                 <tr>
+                    <td>@medicine.Prescription.Id</td>
                     <td>@medicine.Prescription.ExpirationDate</td>
                     <td>@medicine.Medicines.Name</td>
                     <td>@medicine.Medicines.ActiveSubstance</td>
-                    <td>@medicine.Prescription.Doctor.Name</td>
                 </tr>
             }
         </tbody>

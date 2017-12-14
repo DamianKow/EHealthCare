@@ -11,7 +11,7 @@ namespace EHealthCare.Model.Models
         public string AccountId { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-        public int Pesel { get; set; }
+        public string Pesel { get; set; }
         public int Age { get; set; }
         public int Phone { get; set; }
         public string City { get; set; }

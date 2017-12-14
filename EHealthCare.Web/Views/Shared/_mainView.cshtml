@@ -8,7 +8,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>_mainView</title>
+    <title>@ViewBag.Title - EHealthCare</title>
     @Styles.Render("~/Css")
 </head>
 
@@ -17,7 +17,7 @@
     <div class="wrapper">
         <header class="main-header">
             <!-- Logo -->
-            <a href="../../index2.html" class="logo">
+            <a href="../../" class="logo">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini"><b>A</b>LT</span>
                 <!-- logo for regular state and mobile devices -->
@@ -72,23 +72,23 @@
                         <li class="header">PATIENT PANEL</li>
                         <li class="treeview">
                             <a href="/Patient/ShowTerms">
-                                <i class="fa fa-dashboard"></i> <span>Terms</span>
+                                <i class="fa fa-dashboard"></i> <span>List of terms</span>
                                 <span class="pull-right-container">
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </span>
                             </a>
                         </li>
                         <li class="treeview">
-                            <a href="/Patient/Visits">
-                                <i class="fa fa-dashboard"></i> <span>Visits</span>
+                            <a href="/Patient/ShowVisits">
+                                <i class="fa fa-dashboard"></i> <span>My visits</span>
                                 <span class="pull-right-container">
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </span>
                             </a>
                         </li>
                         <li class="treeview">
-                            <a href="/Patient/Prescriptions">
-                                <i class="fa fa-dashboard"></i> <span>Prescriptions</span>
+                            <a href="/Patient/ShowPrescriptions">
+                                <i class="fa fa-dashboard"></i> <span>My prescriptions</span>
                                 <span class="pull-right-container">
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </span>
@@ -108,23 +108,31 @@
                         <li class="header">DOCTOR PANEL</li>
                         <li class="treeview">
                             <a href="/Doctor/ShowTerm">
-                                <i class="fa fa-dashboard"></i> <span>Terms</span>
+                                <i class="fa fa-dashboard"></i> <span>My terms</span>
                                 <span class="pull-right-container">
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </span>
                             </a>
                         </li>
                         <li class="treeview">
-                            <a href="/Doctor/MyVisit">
-                                <i class="fa fa-dashboard"></i> <span>Visits</span>
+                            <a href="/Doctor/ShowVisits">
+                                <i class="fa fa-dashboard"></i> <span>My visits</span>
                                 <span class="pull-right-container">
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </span>
                             </a>
                         </li>
                         <li class="treeview">
-                            <a href="/Doctor/Prescriptions">
-                                <i class="fa fa-dashboard"></i> <span>Prescriptions</span>
+                            <a href="/Doctor/ShowPrescriptions">
+                                <i class="fa fa-dashboard"></i> <span>My prescriptions</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="treeview">
+                            <a href="/Doctor/ManagePrescriptions">
+                                <i class="fa fa-dashboard"></i> <span>Manage prescriptions</span>
                                 <span class="pull-right-container">
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </span>

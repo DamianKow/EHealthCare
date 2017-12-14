@@ -284,6 +284,10 @@
     <Compile Include="Migrations\201712141911526_AnotherUpdateOfPatientVisit1.Designer.cs">
       <DependentUpon>201712141911526_AnotherUpdateOfPatientVisit1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712142310552_UpdatePeselForPatient.cs" />
+    <Compile Include="Migrations\201712142310552_UpdatePeselForPatient.Designer.cs">
+      <DependentUpon>201712142310552_UpdatePeselForPatient.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -360,6 +364,7 @@
     <Content Include="Views\Patient\ShowPrescriptions.cshtml" />
     <Content Include="Views\Doctor\ShowVisits.cshtml" />
     <Content Include="Views\Doctor\ManagePrescriptions.cshtml" />
+    <Content Include="Views\Doctor\ShowPrescriptions.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -444,6 +449,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712141911526_AnotherUpdateOfPatientVisit1.resx">
       <DependentUpon>201712141911526_AnotherUpdateOfPatientVisit1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712142310552_UpdatePeselForPatient.resx">
+      <DependentUpon>201712142310552_UpdatePeselForPatient.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

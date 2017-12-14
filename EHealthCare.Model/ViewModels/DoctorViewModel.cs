@@ -37,6 +37,9 @@ namespace EHealthCare.Model.ViewModels
         public int PrescriptionId { get; set; }
         public int VisitId { get; set; }
         public string Comment { get; set; }
+        public IEnumerable<PatientVisit> PatientVisits { get; set; }
+        public IEnumerable<Prescription> Prescriptions { get; set; }
+        public IEnumerable<PrecriptionMedicine> PrecriptionMedicines { get; set; }
     }
 
     public class AddMedicineToPrescriptionViewModel

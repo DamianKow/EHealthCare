@@ -23,7 +23,9 @@ namespace EHealthCare.Web.Controllers
         [Authorize(Roles = "Patient")]
         public ActionResult DataManage()
         {
-            return View();
+            var userId = User.Identity.GetUserId();
+            var patient = _context.Patients.Single(x => x.AccountId == userId);
+            return View(patient);
         }
 
         [HttpPost]
@@ -40,7 +42,7 @@ namespace EHealthCare.Web.Controllers
                 model);
             _context.SaveChanges();
 
-            return RedirectToAction("Dashboard", "Home");
+            return RedirectToAction("ShowTerms", "Patient");
             // return RedirectToAction("Index", "Manage");    
         }
 
@@ -63,7 +65,7 @@ namespace EHealthCare.Web.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Patient")]
-        public ActionResult CreateVisit(string submitButton)
+        public ActionResult ShowTerms(string submitButton) // creates a visit on ShowTerm view.
         {
 
             if (ModelState.IsValid)
@@ -87,6 +89,7 @@ namespace EHealthCare.Web.Controllers
                         {
                             Date = currentTerm.DateTimeOfTerm,
                             Doctor = currentTerm.Doctor,
+                            IsTookPlace = false,
                             Patient = patient,
                         };
 
@@ -95,8 +98,6 @@ namespace EHealthCare.Web.Controllers
 
                         TempData["Success"] = $"Successfully booked a visit on: {currentTerm.DateTimeOfTerm}";
                     }
-
-                
 
             }
 
@@ -128,15 +129,13 @@ namespace EHealthCare.Web.Controllers
         {
             var userId = User.Identity.GetUserId();
 
-            var prescriptions = _context.Prescriptions
-                .Where(p => p.Patient.AccountId == userId);
-
             var prescriptionMedicines = _context.PrecriptionMedicine
+                .Include("Prescription")
+                .Include("Medicines")
                 .Where(p => p.Prescription.Patient.AccountId == userId);
 
             var viewModel = new PatientShowPrescriptionsViewModel
             {
-                Prescriptions = prescriptions,
                 PrecriptionMedicines = prescriptionMedicines
             };
 

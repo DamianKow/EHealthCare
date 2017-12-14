@@ -1,6 +1,7 @@
 ﻿using EHealthCare.DataLayer;
 using EHealthCare.Model.Models;
 using EHealthCare.Model.ViewModels;
+using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Data.Entity.Migrations;
@@ -31,7 +32,9 @@ namespace EHealthCare.Web.Controllers
         [Authorize(Roles = "Doctor")]
         public ActionResult DataManage()
         {
-            return View();
+            var userId = User.Identity.GetUserId();
+            var doctor = _context.Doctors.Single(x => x.AccountId == userId);
+            return View(doctor);
         }
 
         [HttpPost]
@@ -48,24 +51,9 @@ namespace EHealthCare.Web.Controllers
                 model);
             _context.SaveChanges();
 
-            return RedirectToAction("Dashboard", "Home");
+            return RedirectToAction("ShowTerm", "Doctor");
            // return RedirectToAction("Index", "Manage");    
         }
-
-        [HttpGet]
-        [Authorize(Roles = "Doctor")]
-        public ActionResult MyVisit()
-        {
-            if (Request.IsAuthenticated)
-            {
-                return View();
-            }
-            else
-            {
-                return RedirectToAction("Dashboard", "Home");
-            }
-        }
-
 
         [HttpGet]
         [Authorize(Roles = "Doctor")]
@@ -107,7 +95,7 @@ namespace EHealthCare.Web.Controllers
                 .Select(s => new
                 {
                     Value = s.Id,
-                    Text = $"Prescription for {s.Patient.Name} {s.Patient.Surname}"
+                    Text = $"Prescription #{s.Id} for {s.Patient.Name} {s.Patient.Surname}"
                 })
                 .ToList();
                 
@@ -123,25 +111,56 @@ namespace EHealthCare.Web.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Doctor")]
-        public ActionResult ManagePrescriptions(AddMedicineToPrescriptionViewModel viewModel)
+        public ActionResult ManagePrescriptions(ManagePrescriptionsViewModel viewModel, string submitButton)
         {
             var userId = User.Identity.GetUserId();
             var currentDoctor = _context.Doctors
                 .Single(x => x.AccountId == userId);
 
-            var medicine = _context.Medicines.Find(viewModel.MedicineId);
-            var prescription = _context.Prescriptions.Find(viewModel.PrescriptionId);
-
-            var prescriptionMedicine = new PrecriptionMedicine
-            {
-                Medicines = medicine,
-                Prescription = prescription
-            };
-
-            _context.PrecriptionMedicine.Add(prescriptionMedicine);
-            _context.SaveChanges();
             
-            return RedirectToAction("ManagePrescriptions", "Doctor");
+            
+            if (submitButton == "prescription")
+            {
+                var visit = _context.Visits.Include("Patient").Single(x => x.Id == viewModel.VisitId);
+
+                visit.IsTookPlace = true;
+
+                if (!viewModel.Comment.IsNullOrWhiteSpace())
+                {
+                    visit.MedicalExamination = viewModel.Comment;
+                }
+
+                var prescription = new Prescription
+                {
+                    Doctor = currentDoctor,
+                    ExpirationDate = DateTime.Now.AddDays(30),
+                    Patient = visit.Patient
+                };
+
+                _context.Prescriptions.Add(prescription);
+                _context.SaveChanges();
+
+                return RedirectToAction("ManagePrescriptions", "Doctor");
+            }
+            else
+            {
+                var medicine = _context.Medicines.Find(viewModel.MedicineId);
+                var prescription = _context.Prescriptions.Find(viewModel.PrescriptionId);
+                var prescriptionMedicine = new PrecriptionMedicine
+                {
+                    Medicines = medicine,
+                    Prescription = prescription
+                };
+
+                _context.PrecriptionMedicine.Add(prescriptionMedicine);
+                _context.SaveChanges();
+
+                return RedirectToAction("ShowPrescriptions", "Doctor");
+            }
+
+            
+            
+            
         }
 
         [HttpPost]
@@ -166,7 +185,7 @@ namespace EHealthCare.Web.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Doctor")]
-        public ActionResult RemoveTerm(string submitButton)
+        public ActionResult ShowTerm(string submitButton)
         {
             if (ModelState.IsValid)
             {
@@ -183,7 +202,7 @@ namespace EHealthCare.Web.Controllers
 
             return RedirectToAction("ShowTerm", "Doctor");
 
-        }
+        } // it is removing term on ShowTerm view.
 
         [HttpGet]
         [Authorize(Roles = "Doctor")]
@@ -239,6 +258,31 @@ namespace EHealthCare.Web.Controllers
 
             return RedirectToAction("ShowVisits", "Doctor");
 
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Doctor")]
+        public ActionResult ShowPrescriptions()
+        {
+            var userId = User.Identity.GetUserId();
+
+            var prescriptions = _context.Prescriptions
+                .Where(p => p.Doctor.AccountId == userId)
+                .ToList();
+
+            var prescriptionMedicines = _context.PrecriptionMedicine
+                .Include("Prescription")
+                .Include("Medicines")
+                .Where(p => p.Prescription.Doctor.AccountId == userId)
+                .ToList();
+
+            var viewModel = new ManagePrescriptionsViewModel
+            {
+                Prescriptions = prescriptions,
+                PrecriptionMedicines = prescriptionMedicines
+            };
+
+            return View(viewModel);
         }
     }
 }
