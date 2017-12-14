@@ -1,7 +1,7 @@
-﻿using System.Data.Entity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using EHealthCare.Model;
+﻿using EHealthCare.Model;
 using EHealthCare.Model.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity;
 
 namespace EHealthCare.DataLayer
 {
@@ -9,7 +9,7 @@ namespace EHealthCare.DataLayer
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public DbSet<PatientVisit> Vistis { get; set; }
+        public DbSet<PatientVisit> Visits { get; set; }
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Clinic> Clinics { get; set; }

@@ -1,0 +1,43 @@
+﻿@model EHealthCare.Model.ViewModels.PatientShowVisitsViewModel
+@{
+    ViewBag.Title = "My visits";
+    Layout = "~/Views/Shared/_mainView.cshtml";
+}
+
+<h2>My visits</h2>
+
+@using (Html.BeginForm("ShowVisits", "Patient"))
+{
+
+    if (TempData["Success"] != null)
+    {
+        <div class="form-group">
+            <p class="alert alert-success" id="successMessage">@TempData["Success"]</p>
+        </div>
+    }
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th>Doctor's name</th>
+            <th>Medical examination</th>
+            <th>Took place?</th>
+        </tr>
+        </thead>
+        
+        <tbody>
+        
+        @foreach (var visit in Model.PatientVisits)
+        {
+            <tr>
+                <td>@visit.Date</td>
+                <td>@visit.Doctor.Name</td>
+                <td>@visit.MedicalExamination</td>
+                <td>@visit.IsTookPlace</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+
+}

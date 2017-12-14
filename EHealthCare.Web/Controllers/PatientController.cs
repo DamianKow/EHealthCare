@@ -2,6 +2,7 @@
 using EHealthCare.Model.Models;
 using EHealthCare.Model.ViewModels;
 using Microsoft.AspNet.Identity;
+using System;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web.Mvc;
@@ -60,11 +61,86 @@ namespace EHealthCare.Web.Controllers
             return View(viewModel);
         }
 
+        [HttpPost]
+        [Authorize(Roles = "Patient")]
+        public ActionResult CreateVisit(string submitButton)
+        {
+
+            if (ModelState.IsValid)
+            {
+
+                    int termId = Convert.ToInt32(submitButton);
+                    var userId = User.Identity.GetUserId();
+                    var currentTerm = _context.Terms
+                        .Include("Doctor")
+                        .Single(p => p.TermId == termId);
+                    
+
+                    var patient = _context.Patients
+                        .Single(x => x.AccountId == userId);
+
+                    if (currentTerm != null)
+                    {
+                        currentTerm.IsTaken = true;
+
+                        var patientVisit = new PatientVisit
+                        {
+                            Date = currentTerm.DateTimeOfTerm,
+                            Doctor = currentTerm.Doctor,
+                            Patient = patient,
+                        };
+
+                        _context.Visits.Add(patientVisit);
+                        _context.SaveChanges();
+
+                        TempData["Success"] = $"Successfully booked a visit on: {currentTerm.DateTimeOfTerm}";
+                    }
+
+                
+
+            }
+
+            return RedirectToAction("ShowVisits", "Patient");
+        }
+
         [HttpGet]
         [Authorize(Roles = "Patient")]
-        public ActionResult CreateVisit()
+        public ActionResult ShowVisits()
         {
-            return View();
+
+            var userId = User.Identity.GetUserId();
+
+            var visits = _context.Visits
+                .Where(v => v.Patient.AccountId == userId)
+                .ToList();
+
+            var viewModel = new PatientShowVisitsViewModel
+            {
+                PatientVisits = visits
+            };
+
+            return View(viewModel);
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Patient")]
+        public ActionResult ShowPrescriptions()
+        {
+            var userId = User.Identity.GetUserId();
+
+            var prescriptions = _context.Prescriptions
+                .Where(p => p.Patient.AccountId == userId);
+
+            var prescriptionMedicines = _context.PrecriptionMedicine
+                .Where(p => p.Prescription.Patient.AccountId == userId);
+
+            var viewModel = new PatientShowPrescriptionsViewModel
+            {
+                Prescriptions = prescriptions,
+                PrecriptionMedicines = prescriptionMedicines
+            };
+
+            return View(viewModel);
         }
 
         // Obsolete - might eventually use later.

@@ -205,6 +205,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ApiController.cs" />
+    <Compile Include="DoctorApiController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\Home2Controller.cs" />
@@ -262,6 +263,26 @@
     <Compile Include="Migrations\201712141601277_EditTermDoctor.cs" />
     <Compile Include="Migrations\201712141601277_EditTermDoctor.Designer.cs">
       <DependentUpon>201712141601277_EditTermDoctor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712141742259_ModifyPatientVisit.cs" />
+    <Compile Include="Migrations\201712141742259_ModifyPatientVisit.Designer.cs">
+      <DependentUpon>201712141742259_ModifyPatientVisit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712141809260_ModifyPrescription.cs" />
+    <Compile Include="Migrations\201712141809260_ModifyPrescription.Designer.cs">
+      <DependentUpon>201712141809260_ModifyPrescription.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712141902455_UpdatePatientVisit.cs" />
+    <Compile Include="Migrations\201712141902455_UpdatePatientVisit.Designer.cs">
+      <DependentUpon>201712141902455_UpdatePatientVisit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712141904249_AnotherUpdateOfPatientVisit.cs" />
+    <Compile Include="Migrations\201712141904249_AnotherUpdateOfPatientVisit.Designer.cs">
+      <DependentUpon>201712141904249_AnotherUpdateOfPatientVisit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712141911526_AnotherUpdateOfPatientVisit1.cs" />
+    <Compile Include="Migrations\201712141911526_AnotherUpdateOfPatientVisit1.Designer.cs">
+      <DependentUpon>201712141911526_AnotherUpdateOfPatientVisit1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -330,12 +351,15 @@
     <Content Include="Views\Home\Dashboard.cshtml" />
     <Content Include="Views\Doctor\DataManage.cshtml" />
     <Content Include="Views\Visit\Index.cshtml" />
-    <Content Include="Views\Doctor\MyVisit.cshtml" />
     <Content Include="Views\Doctor\AddTerm.cshtml" />
     <Content Include="Views\Doctor\ShowTerm.cshtml" />
     <Content Include="Views\Error\Failed.cshtml" />
     <Content Include="Views\Patient\DataManage.cshtml" />
     <Content Include="Views\Patient\ShowTerms.cshtml" />
+    <Content Include="Views\Patient\ShowVisits.cshtml" />
+    <Content Include="Views\Patient\ShowPrescriptions.cshtml" />
+    <Content Include="Views\Doctor\ShowVisits.cshtml" />
+    <Content Include="Views\Doctor\ManagePrescriptions.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -343,7 +367,6 @@
     <Folder Include="Content\build\" />
     <Folder Include="Content\dist\" />
     <Folder Include="Content\plugins\" />
-    <Folder Include="Views\Api\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -406,6 +429,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712141601277_EditTermDoctor.resx">
       <DependentUpon>201712141601277_EditTermDoctor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712141742259_ModifyPatientVisit.resx">
+      <DependentUpon>201712141742259_ModifyPatientVisit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712141809260_ModifyPrescription.resx">
+      <DependentUpon>201712141809260_ModifyPrescription.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712141902455_UpdatePatientVisit.resx">
+      <DependentUpon>201712141902455_UpdatePatientVisit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712141904249_AnotherUpdateOfPatientVisit.resx">
+      <DependentUpon>201712141904249_AnotherUpdateOfPatientVisit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712141911526_AnotherUpdateOfPatientVisit1.resx">
+      <DependentUpon>201712141911526_AnotherUpdateOfPatientVisit1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

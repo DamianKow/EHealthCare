@@ -13,7 +13,6 @@
         <tr>
             <th>Doctor</th>
             <th>Date</th>
-            <th>Is taken?</th>
             <th></th>
         </tr>
         </thead>
@@ -23,21 +22,13 @@
         @foreach (var term in Model.Terms)
         {
             <tr>
-                <td>@term.Doctor.Name</td>
+                <td>@term.Doctor.Name @term.Doctor.Surname</td>
                 <td>@term.DateTimeOfTerm</td>
-                @if (@term.IsTaken == true)
+                @using (Html.BeginForm("CreateVisit", "Patient"))
                 {
-                    <td>True</td>
-                    <td></td>
+                   <td><button type="submit" class="btn btn-primary" name="submitButton" value="@term.TermId">Book</button></td>
                 }
-                else
-                {
-                    <td>False</td>
-                    using (Html.BeginForm("CreateVisit", "Patient"))
-                    {
-                        <td><button type="submit" class="btn btn-primary" name="submitButton" value="@term.TermId">Book</button></td>
-                    }
-                }
+                
             </tr>
         }
         </tbody>

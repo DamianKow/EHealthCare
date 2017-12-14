@@ -8,6 +8,8 @@ namespace EHealthCare.Model.Models
         [Key]
         public int Id { get; set; }
         public DateTime ExpirationDate { get; set; }
-      
+        public virtual Doctor Doctor { get; set; }
+        public virtual Patient Patient { get; set; }
     }
+      
 }

@@ -1,0 +1,35 @@
+﻿@model EHealthCare.Model.ViewModels.PatientShowPrescriptionsViewModel
+@{
+    ViewBag.Title = "Prescriptions";
+    Layout = "~/Views/Shared/_mainView.cshtml";
+}
+
+<h2>Medicines prescribed</h2>
+
+@using (Html.BeginForm("ShowPrescriptions", "Patient"))
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Expiration Date</th>
+                <th>Medicine</th>
+                <th>Active substance</th>
+                <th>Who prescribed?</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            @foreach (var medicine in Model.PrecriptionMedicines)
+            {
+                <tr>
+                    <td>@medicine.Prescription.ExpirationDate</td>
+                    <td>@medicine.Medicines.Name</td>
+                    <td>@medicine.Medicines.ActiveSubstance</td>
+                    <td>@medicine.Prescription.Doctor.Name</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}

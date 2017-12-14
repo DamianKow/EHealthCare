@@ -69,17 +69,34 @@
                     
                     @if (Request.IsAuthenticated && User.IsInRole("Patient"))
                     {
+                        <li class="header">PATIENT PANEL</li>
                         <li class="treeview">
-                            <a href="/Doctor/ShowTerm">
-                                <i class="fa fa-dashboard"></i> <span>Sample field for doctor 1</span>
+                            <a href="/Patient/ShowTerms">
+                                <i class="fa fa-dashboard"></i> <span>Terms</span>
                                 <span class="pull-right-container">
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </span>
                             </a>
                         </li>
                         <li class="treeview">
-                            <a href="/Doctor/ShowTerm">
-                                <i class="fa fa-dashboard"></i> <span>Sample field for doctor 2</span>
+                            <a href="/Patient/Visits">
+                                <i class="fa fa-dashboard"></i> <span>Visits</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="treeview">
+                            <a href="/Patient/Prescriptions">
+                                <i class="fa fa-dashboard"></i> <span>Prescriptions</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="treeview">
+                            <a href="/Patient/DataManage">
+                                <i class="fa fa-dashboard"></i> <span>Personal data</span>
                                 <span class="pull-right-container">
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </span>
@@ -88,61 +105,40 @@
                     }
                     @if (Request.IsAuthenticated && User.IsInRole("Doctor"))
                     {
+                        <li class="header">DOCTOR PANEL</li>
                         <li class="treeview">
                             <a href="/Doctor/ShowTerm">
-                                <i class="fa fa-dashboard"></i> <span>Sample field for patient 1</span>
+                                <i class="fa fa-dashboard"></i> <span>Terms</span>
                                 <span class="pull-right-container">
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </span>
                             </a>
                         </li>
                         <li class="treeview">
-                            <a href="/Doctor/ShowTerm">
-                                <i class="fa fa-dashboard"></i> <span>Sample field for patient 2</span>
+                            <a href="/Doctor/MyVisit">
+                                <i class="fa fa-dashboard"></i> <span>Visits</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="treeview">
+                            <a href="/Doctor/Prescriptions">
+                                <i class="fa fa-dashboard"></i> <span>Prescriptions</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="treeview">
+                            <a href="/Doctor/DataManage">
+                                <i class="fa fa-dashboard"></i> <span>Personal data</span>
                                 <span class="pull-right-container">
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </span>
                             </a>
                         </li>
                     }
-
-
-                    <li class="header">MAIN NAVIGATION</li>
-                    <li class="treeview">
-                        <a href="/Home/Dashboard">
-                            <i class="fa fa-dashboard"></i> <span>Panel główny</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        @*<ul class="treeview-menu">
-                            <li><a href="../../index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-                            <li><a href="../../index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
-                        </ul>*@
-                    </li>
-
-                    <li class="treeview">
-                        <a href="/Doctor/MyVisit">
-                            <i class="fa fa-dashboard"></i> <span>Przyszłe wizyty</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        @*<ul class="treeview-menu">
-                            <li><a href="../../index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-                            <li><a href="../../index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
-                        </ul>*@
-                    </li>
-
-                    <li class="treeview">
-                        <a href="/Doctor/ShowTerm">
-                            <i class="fa fa-dashboard"></i> <span>Moje terminy</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                    </li>
-
 
                 </ul>
             </section>

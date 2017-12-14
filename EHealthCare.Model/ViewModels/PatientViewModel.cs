@@ -23,4 +23,16 @@ namespace EHealthCare.Model.ViewModels
     {
         public IEnumerable<Term> Terms { get; set; }
     }
+
+    public class PatientShowVisitsViewModel
+    {
+        public IEnumerable<PatientVisit> PatientVisits { get; set; }
+    }
+
+    public class PatientShowPrescriptionsViewModel
+    {
+        public IEnumerable<Prescription> Prescriptions { get; set; }
+        public IEnumerable<PrecriptionMedicine> PrecriptionMedicines { get; set; }
+    }
+    
 }

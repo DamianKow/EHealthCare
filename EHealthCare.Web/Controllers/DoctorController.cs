@@ -74,14 +74,83 @@ namespace EHealthCare.Web.Controllers
             return View();
         }
 
+        [HttpGet]
+        [Authorize(Roles = "Doctor")]
+        public ActionResult ManagePrescriptions()
+        {
+            var userId = User.Identity.GetUserId();
+
+            var visits = _context.Visits
+                .Include("Patient")
+                .Where(v => v.Doctor.AccountId == userId)
+                .AsEnumerable()
+                .Select(s => new
+                {
+                    Value = s.Id,
+                    Text = $"Visit of: {s.Patient.Name} {s.Patient.Surname} on {s.Date}"
+                })
+                .ToList();
+
+            var medicines = _context.Medicines
+                .AsEnumerable()
+                .Select(s => new
+                {
+                    Value = s.Id,
+                    Text = $"{s.Name} with {s.ActiveSubstance} inside"
+                })
+                .ToList();
+
+            var prescriptions = _context.Prescriptions
+                .Include("Patient")
+                .Where(p => p.Doctor.AccountId == userId)
+                .AsEnumerable()
+                .Select(s => new
+                {
+                    Value = s.Id,
+                    Text = $"Prescription for {s.Patient.Name} {s.Patient.Surname}"
+                })
+                .ToList();
+                
+            var prescriptionMedicines = _context.PrecriptionMedicine
+                .Where(p => p.Prescription.Doctor.AccountId == userId);
+
+            ViewBag.Prescriptions = new SelectList(prescriptions, "Value", "Text");
+            ViewBag.Medicines = new SelectList(medicines, "Value", "Text");
+            ViewBag.Visits = new SelectList(visits, "Value", "Text");
+
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Doctor")]
+        public ActionResult ManagePrescriptions(AddMedicineToPrescriptionViewModel viewModel)
+        {
+            var userId = User.Identity.GetUserId();
+            var currentDoctor = _context.Doctors
+                .Single(x => x.AccountId == userId);
+
+            var medicine = _context.Medicines.Find(viewModel.MedicineId);
+            var prescription = _context.Prescriptions.Find(viewModel.PrescriptionId);
+
+            var prescriptionMedicine = new PrecriptionMedicine
+            {
+                Medicines = medicine,
+                Prescription = prescription
+            };
+
+            _context.PrecriptionMedicine.Add(prescriptionMedicine);
+            _context.SaveChanges();
+            
+            return RedirectToAction("ManagePrescriptions", "Doctor");
+        }
+
         [HttpPost]
         [Authorize(Roles = "Doctor")]
         public ActionResult AddTerm(AddTermViewModel viewModel)
         {
             var userId = User.Identity.GetUserId();
             var currentDoctor = _context.Doctors
-                .Where(x => x.AccountId == userId)
-                .FirstOrDefault();
+                .Single(x => x.AccountId == userId);
 
             var term = new Term
             {
@@ -132,6 +201,44 @@ namespace EHealthCare.Web.Controllers
             };
 
             return View(viewModel);
+        }
+
+        public ActionResult ShowVisits()
+        {
+            var userId = User.Identity.GetUserId();
+
+            var visits = _context.Visits
+                .Where(v => v.Doctor.AccountId == userId)
+                .ToList();
+
+            var viewModel = new DoctorShowVisitsViewModel
+            {
+                Visits = visits
+            };
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Doctor")]
+        public ActionResult CompleteVisit(string submitButton)
+        {
+            if (ModelState.IsValid)
+            {
+                var currentVisit = _context.Visits
+                    .Find(Convert.ToInt32(submitButton));
+
+                if (currentVisit != null)
+                {
+                    currentVisit.IsTookPlace = true;
+                    TempData["Success"] = $"Successfully marked a visit on: {currentVisit.Date}";
+                    _context.SaveChanges();
+                }
+
+            }
+
+            return RedirectToAction("ShowVisits", "Doctor");
+
         }
     }
 }
