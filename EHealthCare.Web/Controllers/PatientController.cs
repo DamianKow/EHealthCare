@@ -24,7 +24,7 @@ namespace EHealthCare.Web.Controllers
         public ActionResult DataManage()
         {
             var userId = User.Identity.GetUserId();
-            var patient = _context.Patients.Single(x => x.AccountId == userId);
+            var patient = _context.Patients.SingleOrDefault(x => x.AccountId == userId);
             return View(patient);
         }
 
@@ -75,11 +75,11 @@ namespace EHealthCare.Web.Controllers
                     var userId = User.Identity.GetUserId();
                     var currentTerm = _context.Terms
                         .Include("Doctor")
-                        .Single(p => p.TermId == termId);
+                        .SingleOrDefault(p => p.TermId == termId);
                     
 
                     var patient = _context.Patients
-                        .Single(x => x.AccountId == userId);
+                        .SingleOrDefault(x => x.AccountId == userId);
 
                     if (currentTerm != null)
                     {

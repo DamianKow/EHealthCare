@@ -33,7 +33,7 @@ namespace EHealthCare.Web.Controllers
         public ActionResult DataManage()
         {
             var userId = User.Identity.GetUserId();
-            var doctor = _context.Doctors.Single(x => x.AccountId == userId);
+            var doctor = _context.Doctors.SingleOrDefault(x => x.AccountId == userId);
             return View(doctor);
         }
 
@@ -115,13 +115,13 @@ namespace EHealthCare.Web.Controllers
         {
             var userId = User.Identity.GetUserId();
             var currentDoctor = _context.Doctors
-                .Single(x => x.AccountId == userId);
+                .SingleOrDefault(x => x.AccountId == userId);
 
             
             
             if (submitButton == "prescription")
             {
-                var visit = _context.Visits.Include("Patient").Single(x => x.Id == viewModel.VisitId);
+                var visit = _context.Visits.Include("Patient").SingleOrDefault(x => x.Id == viewModel.VisitId);
 
                 visit.IsTookPlace = true;
 
@@ -169,7 +169,7 @@ namespace EHealthCare.Web.Controllers
         {
             var userId = User.Identity.GetUserId();
             var currentDoctor = _context.Doctors
-                .Single(x => x.AccountId == userId);
+                .SingleOrDefault(x => x.AccountId == userId);
 
             var term = new Term
             {
