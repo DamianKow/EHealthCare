@@ -89,64 +89,69 @@
         @*</dd>*@
     @*</dl>*@
 
-
-    @using (Html.BeginForm("ActualizeData", "Doctor", FormMethod.Post))
+@if (Request.IsAuthenticated && User.IsInRole("Doctor"))
+{
+    using (Html.BeginForm("ActualizeData", "Doctor", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
 
         <div class="form-horizontal">
             <h4>Doctor</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <hr/>
+            @Html.ValidationSummary(true, "", new {@class = "text-danger"})
 
 
             <div class="form-group">
                 <div class="control-label col-md-2">Imię:</div>
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.Name, new {htmlAttributes = new {@class = "form-control"}})
+                    @Html.ValidationMessageFor(model => model.Name, "", new {@class = "text-danger"})
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="control-label col-md-2">Nazwisko:</div>
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.Surname, new {htmlAttributes = new {@class = "form-control"}})
+                    @Html.ValidationMessageFor(model => model.Surname, "", new {@class = "text-danger"})
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="control-label col-md-2">Pesel:</div>
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Pesel, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Pesel, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.Pesel, new {htmlAttributes = new {@class = "form-control"}})
+                    @Html.ValidationMessageFor(model => model.Pesel, "", new {@class = "text-danger"})
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="control-label col-md-2">Numer telefonu:</div>
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.Phone, new {htmlAttributes = new {@class = "form-control"}})
+                    @Html.ValidationMessageFor(model => model.Phone, "", new {@class = "text-danger"})
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="control-label col-md-2">Specjalizacja:</div>
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Specialization, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Specialization, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.Specialization, new {htmlAttributes = new {@class = "form-control"}})
+                    @Html.ValidationMessageFor(model => model.Specialization, "", new {@class = "text-danger"})
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Zaktualizuj" class="btn btn-default" />
+                    <input type="submit" value="Zaktualizuj" class="btn btn-default"/>
                 </div>
             </div>
         </div>
     }
-
+}
+else
+{
+    Response.Redirect(Url.Action("ActualizeData", "Patient"));
+}
 
 </div>

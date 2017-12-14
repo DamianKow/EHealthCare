@@ -1,7 +1,7 @@
 ﻿@using EHealthCare.Web.Models
 @model LoginViewModel
 @{
-    ViewBag.Title = "Log in.";
+    ViewBag.Title = "Log in";
 }
 
 <h2>@ViewBag.Title.</h2>
@@ -50,13 +50,13 @@
             }
         </section>
     </div>
-    <div class="col-md-4">
+    @*<div class="col-md-4">
         Umów wizytę jako pacjent.
         @using (Html.BeginForm("Index", "Visit", FormMethod.Post))
         {
             <input class="btn btn-default" type="submit" value="Przejdź do formularza" />
         }
-        </div>
+        </div>*@
 </div>
 
 @section Scripts {

@@ -2,8 +2,8 @@
 using EHealthCare.Model.Models;
 using EHealthCare.Model.ViewModels;
 using Microsoft.AspNet.Identity;
+using System;
 using System.Data.Entity.Migrations;
-using System.Diagnostics;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -20,40 +20,40 @@ namespace EHealthCare.Web.Controllers
             _context = new ApplicationDbContext();
         }
 
-        // GET: Doctor
+        [HttpGet]
+        [Authorize(Roles = "Doctor")]
         public ActionResult Index()
         {
             return View();
         }
 
+        [HttpGet]
+        [Authorize(Roles = "Doctor")]
         public ActionResult DataManage()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize(Roles = "Doctor")]
         [ValidateAntiForgeryToken]
         public ActionResult ActualizeData(Doctor model)
         {
-            // TODO: Use new convention for dbcontext to avoid reusing a lot of code.
-            ApplicationDbContext db = new ApplicationDbContext();
-
-            Debug.Print(model.ToString());
-
             var userId = User.Identity.GetUserId();
 
             model.AccountId = userId;
 
-            db.Doctors.AddOrUpdate(
+            _context.Doctors.AddOrUpdate(
                 d => d.AccountId,
                 model);
-            db.SaveChanges();
+            _context.SaveChanges();
 
             return RedirectToAction("Dashboard", "Home");
            // return RedirectToAction("Index", "Manage");    
         }
 
-
+        [HttpGet]
+        [Authorize(Roles = "Doctor")]
         public ActionResult MyVisit()
         {
             if (Request.IsAuthenticated)
@@ -66,13 +66,16 @@ namespace EHealthCare.Web.Controllers
             }
         }
 
+
         [HttpGet]
+        [Authorize(Roles = "Doctor")]
         public ActionResult AddTerm()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize(Roles = "Doctor")]
         public ActionResult AddTerm(AddTermViewModel viewModel)
         {
             var userId = User.Identity.GetUserId();
@@ -82,8 +85,7 @@ namespace EHealthCare.Web.Controllers
 
             var term = new Term
             {
-                Day = viewModel.Day,
-                Hour = viewModel.Hour,
+                DateTimeOfTerm = viewModel.DateTimeOfTerm,
                 Doctor = currentDoctor
             };
 
@@ -93,7 +95,29 @@ namespace EHealthCare.Web.Controllers
             return RedirectToAction("ShowTerm", "Doctor");
         }
 
+        [HttpPost]
+        [Authorize(Roles = "Doctor")]
+        public ActionResult RemoveTerm(string submitButton)
+        {
+            if (ModelState.IsValid)
+            {
+                var currentTerm = _context.Terms
+                    .Find(Convert.ToInt32(submitButton));
+
+                if (currentTerm != null)
+                {
+                    _context.Terms.Remove(currentTerm);
+                    _context.SaveChanges();
+                }
+
+            }
+
+            return RedirectToAction("ShowTerm", "Doctor");
+
+        }
+
         [HttpGet]
+        [Authorize(Roles = "Doctor")]
         public ActionResult ShowTerm()
         {
 

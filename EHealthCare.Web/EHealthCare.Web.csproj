@@ -206,6 +206,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ApiController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\Home2Controller.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -253,6 +254,14 @@
     <Compile Include="Migrations\201712121951417_AddIsUsableFieldForTerms.cs" />
     <Compile Include="Migrations\201712121951417_AddIsUsableFieldForTerms.Designer.cs">
       <DependentUpon>201712121951417_AddIsUsableFieldForTerms.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712141402001_EditTermConventionAddDateTime.cs" />
+    <Compile Include="Migrations\201712141402001_EditTermConventionAddDateTime.Designer.cs">
+      <DependentUpon>201712141402001_EditTermConventionAddDateTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712141601277_EditTermDoctor.cs" />
+    <Compile Include="Migrations\201712141601277_EditTermDoctor.Designer.cs">
+      <DependentUpon>201712141601277_EditTermDoctor.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -324,6 +333,9 @@
     <Content Include="Views\Doctor\MyVisit.cshtml" />
     <Content Include="Views\Doctor\AddTerm.cshtml" />
     <Content Include="Views\Doctor\ShowTerm.cshtml" />
+    <Content Include="Views\Error\Failed.cshtml" />
+    <Content Include="Views\Patient\DataManage.cshtml" />
+    <Content Include="Views\Patient\ShowTerms.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -388,6 +400,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712121951417_AddIsUsableFieldForTerms.resx">
       <DependentUpon>201712121951417_AddIsUsableFieldForTerms.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712141402001_EditTermConventionAddDateTime.resx">
+      <DependentUpon>201712141402001_EditTermConventionAddDateTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712141601277_EditTermDoctor.resx">
+      <DependentUpon>201712141601277_EditTermDoctor.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

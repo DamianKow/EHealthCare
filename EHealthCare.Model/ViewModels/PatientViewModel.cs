@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using EHealthCare.Model.Models;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace EHealthCare.Model.ViewModels
 {
@@ -15,5 +17,10 @@ namespace EHealthCare.Model.ViewModels
         public string PostCode { get; set; }
         public string Sex { get; set; }
 
+    }
+
+    public class PatientShowTermsViewModel
+    {
+        public IEnumerable<Term> Terms { get; set; }
     }
 }

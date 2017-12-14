@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace EHealthCare.Model.Models
 {
@@ -6,9 +7,10 @@ namespace EHealthCare.Model.Models
     {
         [Key]
         public int TermId { get; set; }
-        public int Day { get; set; }
-        public int Hour { get; set; }
-        public virtual Doctor Doctor { get; set; }
+        public DateTime DateTimeOfTerm { get; set; }
+        [Required]
+        public Doctor Doctor { get; set; }
+        public int DoctorId { get; set; }
         public bool IsTaken { get; set; }
     }
 }

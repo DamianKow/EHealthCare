@@ -1,7 +1,6 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace EHealthCare.Model
+namespace EHealthCare.Model.Models
 {
     public class Patient
     {

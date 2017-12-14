@@ -1,5 +1,7 @@
 ﻿using EHealthCare.Model.Models;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace EHealthCare.Model.ViewModels
 {
@@ -15,8 +17,8 @@ namespace EHealthCare.Model.ViewModels
 
     public class AddTermViewModel
     {
-        public int Day { get; set; }
-        public int Hour { get; set; }
+        [Display(Name = "Date of term (YYYY-MM-DD HH:MM:SS)")]
+        public DateTime DateTimeOfTerm { get; set; }
     }
 
     public class ShowTermsViewModel

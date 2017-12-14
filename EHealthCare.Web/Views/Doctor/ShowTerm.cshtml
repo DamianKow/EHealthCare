@@ -14,9 +14,9 @@
         <thead>
         <tr>
             <th>Id</th>
-            <th>Day</th>
-            <th>Hour</th>
+            <th>Date</th>
             <th>Is taken?</th>
+            <th></th>
         </tr>
         </thead>
         
@@ -26,15 +26,19 @@
             {
                 <tr>
                     <td>@term.TermId</td>
-                    <td>@term.Day</td>
-                    <td>@term.Hour</td>
+                    <td>@term.DateTimeOfTerm</td>
                     @if (@term.IsTaken == true)
                     {
                         <td>True</td>
+                        <td></td>
                     }
                     else
                     {
                         <td>False</td>
+                        using (Html.BeginForm("RemoveTerm", "Doctor"))
+                        {
+                            <td><button type="submit" class="btn btn-primary" name="submitButton" value="@term.TermId">Remove</button></td>
+                        }
                     }
                 </tr>
             }

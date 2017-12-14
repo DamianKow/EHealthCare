@@ -1,0 +1,46 @@
+﻿@model EHealthCare.Model.ViewModels.PatientShowTermsViewModel
+@{
+    ViewBag.Title = "Terms";
+    Layout = "~/Views/Shared/_mainView.cshtml";
+}
+
+<h2>Terms</h2>
+
+@using (Html.BeginForm("ShowTerms", "Patient"))
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Doctor</th>
+            <th>Date</th>
+            <th>Is taken?</th>
+            <th></th>
+        </tr>
+        </thead>
+        
+        <tbody>
+        
+        @foreach (var term in Model.Terms)
+        {
+            <tr>
+                <td>@term.Doctor.Name</td>
+                <td>@term.DateTimeOfTerm</td>
+                @if (@term.IsTaken == true)
+                {
+                    <td>True</td>
+                    <td></td>
+                }
+                else
+                {
+                    <td>False</td>
+                    using (Html.BeginForm("CreateVisit", "Patient"))
+                    {
+                        <td><button type="submit" class="btn btn-primary" name="submitButton" value="@term.TermId">Book</button></td>
+                    }
+                }
+            </tr>
+        }
+        </tbody>
+    </table>
+
+}
